@@ -31,7 +31,7 @@ const getReviewById = asyncHandler(async (req, res) => {
 // @route   GET /api/reviews/myreviews
 // @access  Private
 const getReviewsByUser = asyncHandler(async (req, res) => {
-  const reviews = await Review.find({ user: req.user._id });
+  const reviews = await Review.find({ user: req.user._id});
   if (!reviews) {
     res.status(400);
     throw new Error('No reviews found');
@@ -57,12 +57,13 @@ const getReviewsByProductId = asyncHandler(async (req, res) => {
 // @route   POST /api/reviews/myreviews
 // @access  Private
 const createReview = asyncHandler(async (req, res) => {
-  const { title, description, rating } = req.body;
+  const { title, rating, comment} = req.body;
   const review = new Review({
     title,
-    description,
     rating,
-    user: req.user._id,
+    comment,
+    owner: req.user._id,
+    product: req.product.productId,
   });
 
   const createdReview = await review.save();
@@ -70,36 +71,29 @@ const createReview = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update a review
-// @route   PUT /api/reviews/myreviews/:id
+// @route   PUT /api/reviews/myreviews
 // @access  Private
 const updateReview = asyncHandler(async (req, res) => {
-  const { title, description, rating } = req.body;
-  const review = await Review.findById(req.params.id);
-
-  if (review) {
-    review.title = title;
-    review.description = description;
-    review.rating = rating;
-
-    const updatedReview = await review.save();
-    res.json(updatedReview);
-  } else {
-    res.status(404);
-    throw new Error('Review not found');
-  }
+  const review = await Review.findByIdAndUpdate(
+    req.review._id,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  res.status(200).json(review);
 });
 
 // @desc    Delete a review
-// @route   DELETE /api/reviews/myreviews/:id
+// @route   DELETE /api/reviews/myreviews
 // @access  Private
 const deleteReview = asyncHandler(async (req, res) => {
-  const review = await Review.findById(req.params.id);
-
-  if (review) {
-    await review.remove();
-    res.json({ message: 'Review removed' });
-  } else {
-    res.status(404);
+  try {
+    const reviewDelete = await Review.findByIdAndDelete(req.review._id);
+    res.status(200).json(reviewDelete);
+  } catch (error) {
+    res.status(400);
     throw new Error('Review not found');
   }
 });

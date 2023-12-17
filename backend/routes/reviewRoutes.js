@@ -12,16 +12,15 @@ import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.get('/', getReviews)
-router.get('/:id', getReviewById)
-
-router.route('/product')
-    .get(getReviewsByProductId)
-
 router.route('/myreviews')
     .get(protect, getReviewsByUser)
     .post(protect, createReview)
     .put(protect, updateReview)
     .delete(protect, deleteReview)
+
+router.get('/product/:productId', getReviewsByProductId)
+
+router.get('/', getReviews)
+router.get('/:id', getReviewById)
 
 export default router

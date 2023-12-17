@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema(
     {
+        title: {
+            type: String,
+            required: true,
+        },
         rating: {
             type: Number,
             required: true,
@@ -15,7 +19,7 @@ const reviewSchema = mongoose.Schema(
             required: true,
             ref: 'Product',
         },
-        user: {
+        owner: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User',

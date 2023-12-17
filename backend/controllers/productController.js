@@ -31,7 +31,8 @@ const getProductById = asyncHandler(async (req, res) => {
 // @route GET /api/products/myproducts
 // @access Private
 const getProductsByUser = asyncHandler(async (req, res) => {
-  const products = await Product.find({ user: req.user._id });
+  console.log("getProductsByUser");
+  const products = await Product.find({ owner: req.user._id });
   if (!products) {
     res.status(400);
     throw new Error('No products found');
@@ -54,28 +55,28 @@ const getProductsByCategory = asyncHandler(async (req, res) => {
 });
 
 // @desc Create a product
-// @route POST /api/products
+// @route POST /api/products/myproducts
 // @access Private
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, description, image, category, price } = req.body;
+  const { name, description, stock, category, price } = req.body;
   const product = new Product({
     name,
     description,
     category,
     price,
     stock,
-    user: req.userId,
+    owner: req.user._id,
   });
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });
 
 // @desc Update a product
-// @route PUT /api/products/:id
+// @route PUT /api/products/myproducts
 // @access Private
 const updateProduct = asyncHandler(async (req, res) => {
   const productUpdate = await Product.findByIdAndUpdate(
-    req.params.id,
+    req.product._id,
     req.body,
     {
       new: true,
@@ -86,12 +87,12 @@ const updateProduct = asyncHandler(async (req, res) => {
 });
 
 // @desc Delete a product
-// @route DELETE /api/products/:id
+// @route DELETE /api/products/myproducts
 // @access Private
 const deleteProduct = asyncHandler(async (req, res) => {
   try {
-    const productDelete = await Product.findByIdAndDelete(req.params.id);
-    res.json(productDelete);
+    const productDelete = await Product.findByIdAndDelete(req.product._id);
+    res.status(200).json(productDelete);
   } catch (error) {
     res.status(400);
     throw new Error('Product not found');

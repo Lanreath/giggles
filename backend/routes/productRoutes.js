@@ -12,13 +12,18 @@ import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', protect, createProduct);
-router.put('/:id', protect, updateProduct);
-router.delete('/:id', protect, deleteProduct);
+router
+    .route('/myproducts')
+    .get(protect, getProductsByUser)
+    .post(protect, createProduct)
+    .put(protect, updateProduct)
+    .delete(protect, deleteProduct);
+
+router
+    .route('/category/:category')
+    .get(getProductsByCategory);
+
 router.get('/', getProducts);
 router.get('/:id', getProductById);
-
-router.route('/myproducts').get(protect, getProductsByUser);
-router.route('/category/:category').get(getProductsByCategory);
 
 export default router;
