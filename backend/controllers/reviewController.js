@@ -31,7 +31,7 @@ const getReviewById = asyncHandler(async (req, res) => {
 // @route   GET /api/reviews/myreviews
 // @access  Private
 const getReviewsByUser = asyncHandler(async (req, res) => {
-  const reviews = await Review.find({ user: req.user._id});
+  const reviews = await Review.find({ owner: req.user._id});
   if (!reviews) {
     res.status(400);
     throw new Error('No reviews found');
@@ -57,13 +57,13 @@ const getReviewsByProductId = asyncHandler(async (req, res) => {
 // @route   POST /api/reviews/myreviews
 // @access  Private
 const createReview = asyncHandler(async (req, res) => {
-  const { title, rating, comment} = req.body;
+  const { title, rating, comment, product} = req.body;
   const review = new Review({
     title,
     rating,
     comment,
     owner: req.user._id,
-    product: req.product.productId,
+    product: product._id,
   });
 
   const createdReview = await review.save();

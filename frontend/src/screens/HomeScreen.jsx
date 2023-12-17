@@ -1,9 +1,12 @@
+import ProductContainer from "../components/ProductContainer";
+import ReviewContainer from "../components/ReviewContainer";
 const HomeScreen = () => {
-    const { userInfo } = useSelector((state) => state.auth);
+  return (
+    <div className="row">
+        <ProductContainer />
+        <ReviewContainer />
+    </div>
+  );
+};
 
-    return (
-        <ProductContainer>
-
-        </ProductContainer>
-    )
-}
+export default HomeScreen;

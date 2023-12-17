@@ -31,7 +31,6 @@ const getProductById = asyncHandler(async (req, res) => {
 // @route GET /api/products/myproducts
 // @access Private
 const getProductsByUser = asyncHandler(async (req, res) => {
-  console.log("getProductsByUser");
   const products = await Product.find({ owner: req.user._id });
   if (!products) {
     res.status(400);
@@ -91,7 +90,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @access Private
 const deleteProduct = asyncHandler(async (req, res) => {
   try {
-    const productDelete = await Product.findByIdAndDelete(req.product._id);
+    if (req.body.owner !== req.user._id.toString()) {
+      res.status(401);
+      throw new Error('Unauthorized');
+    }
+    const productDelete = await Product.findByIdAndDelete(req.body._id);
     res.status(200).json(productDelete);
   } catch (error) {
     res.status(400);

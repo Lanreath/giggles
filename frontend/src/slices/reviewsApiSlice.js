@@ -8,6 +8,7 @@ export const reviewApiSlice = apiSlice.injectEndpoints({
                 url: `${REVIEWS_URL}`,
                 method: "GET",
             }),
+            providesTags: ["Review"],
         }),
         getReview: builder.query({
             query: (data) => ({
@@ -25,7 +26,7 @@ export const reviewApiSlice = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: `${REVIEWS_URL}/myreviews`,
                 method: "GET",
-                body: data,
+                user: data,
             }),
         }),
         createReview: builder.mutation({
@@ -34,6 +35,7 @@ export const reviewApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data,
             }),
+            invalidatesTags: ["Review"],
         }),
         updateReview: builder.mutation({
             query: (data) => ({
@@ -41,6 +43,7 @@ export const reviewApiSlice = apiSlice.injectEndpoints({
                 method: "PUT",
                 body: data,
             }),
+            invalidatesTags: ["Review"],
         }),
         deleteReview: builder.mutation({
             query: (data) => ({
@@ -48,6 +51,7 @@ export const reviewApiSlice = apiSlice.injectEndpoints({
                 method: "DELETE",
                 body: data,
             }),
+            invalidatesTags: ["Review"],
         }),
     }),
 });

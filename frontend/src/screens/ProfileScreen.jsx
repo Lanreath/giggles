@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
@@ -37,7 +36,6 @@ const ProfileScreen = () => {
           email,
           password,
         }).unwrap();
-        console.log(res);
         dispatch(setCredentials(res));
         toast.success('Profile updated successfully');
       } catch (err) {
