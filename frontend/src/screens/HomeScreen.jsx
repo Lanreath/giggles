@@ -1,6 +1,9 @@
-import Hero from '../components/Hero';
-
 const HomeScreen = () => {
-  return <Hero />;
-};
-export default HomeScreen;
+    const { userInfo } = useSelector((state) => state.auth);
+
+    return (
+        <ProductContainer>
+
+        </ProductContainer>
+    )
+}
