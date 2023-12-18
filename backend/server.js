@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(
   {
     origin: 'https://giggles-dusky.vercel.app',
+    credentials: true,
   }
 ));
 
