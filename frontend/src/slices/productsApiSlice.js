@@ -28,6 +28,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 method: "GET",
                 user: data,
             }),
+            providesTags: ["Product"],
         }),
         createProduct: builder.mutation({
             query: (data) => ({

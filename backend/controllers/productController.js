@@ -74,9 +74,10 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route PUT /api/products/myproducts
 // @access Private
 const updateProduct = asyncHandler(async (req, res) => {
+  console.log(req);
   const productUpdate = await Product.findByIdAndUpdate(
-    req.product._id,
-    req.body,
+    req.body._id,
+    req.body.product,
     {
       new: true,
       runValidators: true,

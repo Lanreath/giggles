@@ -21,12 +21,14 @@ export const reviewApiSlice = apiSlice.injectEndpoints({
                 url: `${REVIEWS_URL}/product/${data.id}`,
                 method: "GET",
             }),
+            providesTags: ["Review"],
         }),
         getReviewsByUser: builder.query({
             query: (data) => ({
                 url: `${REVIEWS_URL}/myreviews`,
                 method: "GET",
                 user: data,
+                providesTags: ["Review"],
             }),
         }),
         createReview: builder.mutation({
