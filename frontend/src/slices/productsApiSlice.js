@@ -24,7 +24,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         }),
         getProductsByUser: builder.query({
             query: (data) => ({
-                url: `${PRODUCTS_URL}/myproducts/`,
+                url: `${PRODUCTS_URL}/myproducts`,
                 method: "GET",
                 user: data,
             }),
