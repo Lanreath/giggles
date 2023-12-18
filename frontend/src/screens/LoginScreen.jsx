@@ -27,6 +27,8 @@ const LoginScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log(process.env.VERCEL_ENV);
+    console.log(process.env.API_URL);
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
