@@ -1,8 +1,6 @@
 import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const baseQuery = fetchBaseQuery({ baseUrl: process.env.API_URL});
+const baseQuery = fetchBaseQuery({ baseUrl: 'https://giggles-fdd233d1e684.herokuapp.com/'});
 
 export const apiSlice = createApi({
   baseQuery,
