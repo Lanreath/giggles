@@ -1,6 +1,6 @@
 import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
 
-const baseQuery = fetchBaseQuery({ baseUrl: 'https://giggles-fdd233d1e684.herokuapp.com/'});
+const baseQuery = fetchBaseQuery({ baseUrl: 'https://giggles-fdd233d1e684.herokuapp.com/', credentials: 'include' });
 
 export const apiSlice = createApi({
   baseQuery,
