@@ -10,6 +10,7 @@ import productRoutes from './routes/productRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 
 const port = process.env.PORT || 5000;
+const cors = require('cors');
 
 connectDB();
 
@@ -17,6 +18,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(
+  {
+    origin: 'https://giggles-dusky.vercel.app/',
+    credentials: true,
+  }
+));
 
 app.use(cookieParser());
 
