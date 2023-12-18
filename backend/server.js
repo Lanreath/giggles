@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(
   {
-    origin: 'https://giggles-dusky.vercel.app/',
+    origin: 'https://giggles-dusky.vercel.app',
   }
 ));
 
