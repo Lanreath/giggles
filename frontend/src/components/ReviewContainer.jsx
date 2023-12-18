@@ -15,29 +15,6 @@ const ReviewContainer = () => {
     isError,
     error,
   } = useGetReviewsByUserQuery(userInfo);
-  // const [addReview, { isLoading: adding }] = useCreateReviewMutation();
-
-  // const [title, setTitle] = useState("");
-  // const [rating, setRating] = useState("");
-  // const [comment, setComment] = useState("");
-  // const [modalShow, setModalShow] = useState(false);
-
-  // const handleShow = () => {
-  //   setModalShow(true);
-  // };
-  // const handleClose = () => {
-  //   setModalShow(false);
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await addReview({ title, rating, comment, }).unwrap();
-  //     setModalShow(false);
-  //   } catch (err) {
-  //     toast.error(err?.data?.message || err.error);
-  //   }
-  // };
 
   return (
     <>
@@ -52,45 +29,6 @@ const ReviewContainer = () => {
             <ReviewCard key={review._id} review={review} />
           ))}
       </div>
-      {/* <Modal show={modalShow} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Review</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="title">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="rating">
-              <Form.Label>Rating</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter rating"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="comment">
-              <Form.Label>Comment</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter comment"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Add
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal> */}
     </>
   );
 };

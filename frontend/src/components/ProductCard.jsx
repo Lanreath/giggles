@@ -188,7 +188,7 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
       ) : (
-        <div className="card">
+        <div className="card m-2">
           <div className="card-body">
             <div className="d-flex justify-content-between">
               <h5 className="card-title">{product.name}</h5>
