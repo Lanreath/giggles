@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: process.env.VERCEL_ENV === 'production' ? process.env.API_URL : 'http://localhost:5000',
+        target: 'https://giggles-fdd233d1e684.herokuapp.com/',
         changeOrigin: true,
       },
     },
