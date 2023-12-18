@@ -48,7 +48,7 @@ const ProductContainer = () => {
     <>
       <div className="col">
         <div className="d-flex justify-content-evenly align-items-center my-2">
-          <div className="h5">Your Products</div>
+          <div className="h3">Your Products</div>
           <button
             type="button"
             onClick={handleShow}

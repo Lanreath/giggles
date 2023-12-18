@@ -58,6 +58,7 @@ const getReviewsByProductId = asyncHandler(async (req, res) => {
 // @access  Private
 const createReview = asyncHandler(async (req, res) => {
   const { title, rating, comment, product} = req.body;
+  console.log(req);
   const review = new Review({
     title,
     rating,
@@ -90,7 +91,7 @@ const updateReview = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteReview = asyncHandler(async (req, res) => {
   try {
-    const reviewDelete = await Review.findByIdAndDelete(req.review._id);
+    const reviewDelete = await Review.findByIdAndDelete(req.body._id);
     res.status(200).json(reviewDelete);
   } catch (error) {
     res.status(400);
